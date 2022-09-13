@@ -3,11 +3,17 @@ import apiRouter from './api';
 
 import express from 'express';
 import { number } from 'prop-types';
+
+import login, { passport } from './Routers/login';
+
+const MongoStore = require("connect-mongo");
 const server = express();
+const session = require("express-session");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const mongoUri = 'mongodb://localhost:27017/test';
 
-mongoose.connect('mongodb://localhost:27017/test', {
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -196,7 +202,7 @@ const Accomodation = mongoose.model('Accomodation', accomodationSchema);
 const Event = mongoose.model('Event', eventSchema);
 const Tshirt = mongoose.model('Tshirt', tshirtSchema);
 const Tour = mongoose.model('Tour', tourSchema);
-const User = mongoose.model('User', userSchema);
+export const User = mongoose.model('User', userSchema);
 
 server.set('view engine', 'ejs');
 
@@ -208,7 +214,7 @@ server.use(bodyParser.urlencoded({
 mongoose.connect("mongodb://localhost:27017/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
+}).then(console.log(`MongoDB connected`));
 
 server.get(['/',
 '/login',
@@ -250,10 +256,29 @@ server.get('/dbclear', (req, res) => {
 server.use('/api', apiRouter);
 server.use(express.static('public'));
 
-server.get('*', (req, res) => {
-    res.render('index');
-})
+server.use(express.json());
+server.use(express.urlencoded({ extended: false }));
 
+// Express Session
+server.use(
+    session({
+        store: MongoStore.create({ mongoUrl: mongoUri}),
+        secret: "secret stuff bro",
+        resave: false,
+        saveUninitialized: true,
+       
+    })
+);
+
+// Passport middleware
+server.use(passport.initialize());
+server.use(passport.session());
+
+server.use('/auth', login);
+
+server.get('*', (req, res) => {
+  res.render('index');
+})
 server.listen(config.port, () => {
     console.info('Express listening on port ', config.port);
 });
