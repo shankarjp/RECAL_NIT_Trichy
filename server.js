@@ -1,15 +1,15 @@
-import config from './config';
-import apiRouter from './api';
+import config from "./config";
+import apiRouter from "./api";
 
-import express from 'express';
-import { number } from 'prop-types';
+import express from "express";
+import { number } from "prop-types";
 const server = express();
 const bodyParser = require("body-parser");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://localhost:27017/test', {
+mongoose.connect("mongodb://localhost:27017/test", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const baseSchema = new mongoose.Schema({
@@ -21,155 +21,155 @@ const baseSchema = new mongoose.Schema({
   region: String,
   mobile: String,
   email: String,
-  tshirt: String
+  tshirt: String,
 });
 
 const paxSchema = new mongoose.Schema({
   alumni: {
     type: Number,
-    default: 1
+    default: 1,
   },
   spouse: {
-    type: Number
+    type: Number,
   },
   familyMembers: {
-    type: Number
+    type: Number,
   },
   grandKids: {
-    type: Number
-  }
+    type: Number,
+  },
 });
 
 const roomOneSchema = new mongoose.Schema({
   roomType: {
     type: String,
-    enum: ['standard', 'executive', 'deluxe', 'luxurySuite', 'grandSuite']
+    enum: ["standard", "executive", "deluxe", "luxurySuite", "grandSuite"],
   },
   roomOccupancy: {
     type: String,
-    enum: ['singleOccupancy', 'doubleOccupancy', 'twinShare']
-  }
+    enum: ["singleOccupancy", "doubleOccupancy", "twinShare"],
+  },
 });
 
 const roomTwoSchema = new mongoose.Schema({
   roomType: {
     type: String,
-    enum: ['standard', 'deluxe', 'familyRoom', 'suite', 'additionalMember']
+    enum: ["standard", "deluxe", "familyRoom", "suite", "additionalMember"],
   },
   roomOccupancy: {
     type: String,
-    enum: ['singleOccupancy', 'doubleOccupancy', 'twinShare']
-  }
+    enum: ["singleOccupancy", "doubleOccupancy", "twinShare"],
+  },
 });
 
 const accomodationSchema = new mongoose.Schema({
   participationType: {
     type: String,
-    enum: ['single', 'withFamily']
+    enum: ["single", "withFamily"],
   },
   pax: {
-    type: paxSchema
+    type: paxSchema,
   },
   hotelRoom: {
     type: String,
-    enum: ['required', 'notRequired']
+    enum: ["required", "notRequired"],
   },
   typeOfRoom: {
-    type: [String],
-    enum: ['singleOccupancy', 'doubleOccupancy', 'twinShare']
+    type: String,
+    enum: ["singleOccupancy", "doubleOccupancy", "twinShare"],
   },
   checkInDate: {
-    type: Date
+    type: Date,
   },
   checkOutDate: {
-    type: Date
+    type: Date,
   },
   hotel: {
     breezeResidency: {
-      type: [roomOneSchema]
+      type: [roomOneSchema],
     },
     hotelTamilNadu: {
-      type: [roomTwoSchema]
-    }
-  }
+      type: [roomTwoSchema],
+    },
+  },
 });
 
 const eventSchema = new mongoose.Schema({
   Date1: {
     cond1: {
-      type: Boolean
+      type: Boolean,
     },
     cond2: {
-      type: Boolean
+      type: Boolean,
     },
     cond3: {
-      type: Boolean
+      type: Boolean,
     },
     count: {
       veg: {
-        type: Number
+        type: Number,
       },
       nonveg: {
-        type: Number
-      }
-    }
+        type: Number,
+      },
+    },
   },
   Date2: {
     cond1: {
-      type: Boolean
+      type: Boolean,
     },
     cond2: {
-      type: Boolean
+      type: Boolean,
     },
     count: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   Date3: {
     cond1: {
-      type: Boolean
+      type: Boolean,
     },
     cond2: {
-      type: Boolean
+      type: Boolean,
     },
     cond3: {
-      type: Boolean
+      type: Boolean,
     },
     count: {
       veg: {
-        type: Number
+        type: Number,
       },
       nonveg: {
-        type: Number
-      }
-    }
-  }
+        type: Number,
+      },
+    },
+  },
 });
 
 const tshirtSchema = new mongoose.Schema({
   isInterested: {
-    type: Boolean
+    type: Boolean,
   },
   menOption: {
     supimaCotton: {
-      type: Boolean
+      type: Boolean,
     },
     sweatWickingFabric: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   womenOption: {
     supimaCotton: {
-      type: Boolean
+      type: Boolean,
     },
     sweatWickingFabric: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   grandKidsOption: {
     supimaCotton: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   quantity: {
     menQuantity: {
@@ -179,7 +179,7 @@ const tshirtSchema = new mongoose.Schema({
         lSize: Number,
         xlSize: Number,
         xxlSize: Number,
-        xxxlSize: Number
+        xxxlSize: Number,
       },
       sweatWickingFabric: {
         sSize: Number,
@@ -187,30 +187,30 @@ const tshirtSchema = new mongoose.Schema({
         lSize: Number,
         xlSize: Number,
         xxlSize: Number,
-        xxxlSize: Number
-      }
+        xxxlSize: Number,
+      },
     },
     womenQuantity: {
       supimaCotton: {
         sSize: Number,
         mSize: Number,
         lSize: Number,
-        xlSize: Number
-      }
+        xlSize: Number,
+      },
     },
     grandKids: {
       girls: {
         category1: Number,
         category2: Number,
-        category3: Number
+        category3: Number,
       },
       boys: {
         category1: Number,
         category2: Number,
-        category3: Number
-      }
-    }
-  }
+        category3: Number,
+      },
+    },
+  },
 });
 
 const tourSchema = new mongoose.Schema({
@@ -219,72 +219,86 @@ const tourSchema = new mongoose.Schema({
     trichy: Number,
     phuketKrabi: Number,
     mysoreBandipur: Number,
-    belurHampi: Number
-  }
+    belurHampi: Number,
+  },
 });
 
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   isAdmin: {
     type: Boolean,
-    required: true
+    required: true,
   },
   base: baseSchema,
   accomodation: accomodationSchema,
   event: eventSchema,
   tshirt: tshirtSchema,
-  tour: tourSchema
+  tour: tourSchema,
 });
 
-const User = mongoose.model('User', userSchema);
+const Base = mongoose.model("Base", baseSchema);
+const Pax = mongoose.model("Pax", paxSchema);
+const RoomOne = mongoose.model("RoomOne", roomOneSchema);
+const RoomTwo = mongoose.model("RoomTwo", roomTwoSchema);
+const Accomodation = mongoose.model("Accomodation", accomodationSchema);
+const Event = mongoose.model("Event", eventSchema);
+const Tshirt = mongoose.model("Tshirt", tshirtSchema);
+const Tour = mongoose.model("Tour", tourSchema);
+const User = mongoose.model("User", userSchema);
 
-server.set('view engine', 'ejs');
+server.set("view engine", "ejs");
 
 server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({
-  extended: true
-}));
+server.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 mongoose.connect("mongodb://localhost:27017/test", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
-server.get(['/',
-'/login',
-'/register',
-'/accomodation',
-'/event-participation',
-'/tshirt',
-'/tours',
-'/previews',
-'/report/registered',
-'/report/summary',
-'/report/tshirt',
-'/report/participation',
-'/report/totalcost',
-'/report/paymentstatus',
-'/report/balance',
-'/test',
-], (req, res) => {
-    res.render('index');
+server.get(
+  [
+    "/",
+    "/login",
+    "/register",
+    "/accomodation",
+    "/event-participation",
+    "/tshirt",
+    "/tours",
+    "/previews",
+    "/report/registered",
+    "/report/summary",
+    "/report/tshirt",
+    "/report/participation",
+    "/report/totalcost",
+    "/report/paymentstatus",
+    "/report/balance",
+    "/test",
+  ],
+  (req, res) => {
+    res.render("index");
+  }
+);
+
+server.use("/api", apiRouter);
+server.use(express.static("public"));
+
+server.get("*", (req, res) => {
+  res.render("index");
 });
-
-server.use('/api', apiRouter);
-server.use(express.static('public'));
-
-server.get('*', (req, res) => {
-    res.render('index');
-})
 
 server.listen(config.port, () => {
-    console.info('Express listening on port ', config.port);
+  console.info("Express listening on port ", config.port);
 });
