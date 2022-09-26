@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const tourSchema = new mongoose.Schema({
     username: String,
-    isInterested: Boolean,
+    isInterested:{type:Boolean, default:false},
     paxCount: {
-      trichy: Number,
-      phuketKrabi: Number,
-      mysoreBandipur: Number,
-      belurHampi: Number
+      trichy: {type:Number, default:0},
+      phuketKrabi: {type:Number, default:0},
+      mysoreBandipur: {type:Number, default:0},
+      belurHampi: {type:Number, default:0},
     }
   });
 

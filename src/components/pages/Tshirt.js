@@ -23,7 +23,7 @@ function Tshirt() {
         var data = {'need' : 1 ,'c' : c, 'men1' : men1 , 'men2' : men2, 'women1' : women1, 'women2' : women2, 'girls1' : girls1 , 'boys1' : boys1};
         }
         else{
-            data = {'need' : 0}
+            data = {'need' : 0, 'c' : [0,0,0,0,0], 'men1' : [0,0,0,0,0,0] , 'men2' : [0,0,0,0,0,0], 'women1' : [0,0,0,0], 'women2' : [0,0,0,0], 'girls1' : [0,0,0] , 'boys1' : [0,0,0]}
         }
         axios.post('http://localhost:8080/api/tshirtSave' , data).then((res) => console.log(res.data));
         sets(true);
@@ -42,14 +42,15 @@ function Tshirt() {
 
     return (
         <motion.div variants={variants1} initial ={{x:'100vw'}} animate="anim" exit={{opacity:0}} className = "outerc" transition={{delay : 0.2 , duration  :0.5}}> 
-        <div  className='mtitle'><h1>Tshirt</h1></div>
+        <motion.div drag dragConstraints={{top:0,bottom:0,left:0,right:0}}  className='mtitle'><h1>Tshirt</h1></motion.div>
         <div className='mainc1'>
-            <label>I am Interested in T-Shirt : </label>
+            <label >I am Interested in T-Shirt : </label>
             <input type="checkbox" onChange={(e) => setn(e.target.checked)}></input>
-        {need && <div>
+        {need && <motion.div initial ={{opacity : 0}} animate = {{opacity : 1}} className='rdetails'>
             <table>
                 <tbody>
                 <h1>T-shirt for men</h1>
+                
                     <tr>
                         <td>"T-Shirt (Dark Brick Red - Supima Cotton)
 Design - Polo with Collar"
@@ -84,14 +85,14 @@ Design - Round Neck"
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </motion.div>
         }
         
         <br />
         </div>
 
         <div className='mainc1'>
-        {need && <div>
+        {need && <motion.div initial ={{opacity : 0}} whileInView={{ opacity: 1 }} transition ={{duration : 2}} className='rdetails'>
             <table>
                 <thead>
                     <tr>
@@ -216,15 +217,15 @@ Design - Round Neck"
                     </tr>
                 </tbody>
             </table>
-            </div>}
+            </motion.div>}
 
         {!need && <p>No Tshirts Selected</p>}
         </div>
         <div className=' c1but'>
         <Link to = "/event-participation"><button className="eventbut">Go Back and edit</button></Link>
-        <button onClick={() => sendpost()}>Save</button>
+        <button className='eventbut' onClick={() => sendpost()}>Save</button>
             
-        {saved && <Link to="/tours" ><button>Continue</button> </Link>}
+        {saved && <Link to="/tours" ><button className='eventbut'>Continue</button> </Link>}
         {saved &&  <p>Successfully Saved</p>}
         </div>        
                         
