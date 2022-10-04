@@ -23,10 +23,11 @@ import ReportTotalcost from './reports/ReportTotalcost';
 import ReportTshirt from './reports/ReportTshirt';
 
 const App = () => {
-    const location = useLocation();
+    //const location = useLocation();
 
     return (
-            <>         
+            <>
+            <Router>         
             <AnimatePresence>
             <Routes location={location} key = {location.pathname}>
                 <Route path='' element={<Home />} />
@@ -49,7 +50,7 @@ const App = () => {
                 <Route path='*' element={<NotFound />} />
             </Routes>
             </AnimatePresence>
-
+            </Router>
         </>
     );
 };
