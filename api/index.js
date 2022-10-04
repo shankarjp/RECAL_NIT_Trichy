@@ -422,7 +422,8 @@ router.get("/summary",async(req,res)=>{
 
 router.post('/accomodationSave', async(req,res)=>{
     try{
-        const data=req.body;console.log(data);
+        const data=req.body;
+        console.log("req body "+JSON.stringify(req.session.passport.user));
 
         const roomtypes2=['standard', 'deluxe', 'familyRoom', 'suite', 'additionalMember']
 
