@@ -10,7 +10,8 @@ const registrationSchema = new mongoose.Schema({
     region: String,
     mobile: String,
     email: String,
-    tshirt: String
+    registered:String
+    //tshirt: String
 });
 
 module.exports = mongoose.model('Registration', registrationSchema);

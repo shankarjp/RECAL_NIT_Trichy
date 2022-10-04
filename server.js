@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const MongoStore = require("connect-mongo");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 const apiRouter = require('./api');
 const config = require('./config/config.js');
@@ -28,6 +29,7 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({
   extended: true
 }));
+server.use(cookieParser());
 server.use(express.static('public'));
 
 // Models
@@ -42,9 +44,14 @@ const User = require('./app/models/Users');
 server.use(
   session({
     store: MongoStore.create({mongoUrl: config.mongodb.dbURI}),
+    key: "user_sid",
     secret: "texy",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000,
+    },
+
   })
 );
 
@@ -94,9 +101,6 @@ server.get('/dbclear', (req, res) => {
 server.use('/api', apiRouter);
 server.use('/login', login);
 
-server.get('/da', (req, res) => {
-    res.send({'data' : 'he'});
-})
 server.get('*', (req, res) => {
     res.render('index');
 })

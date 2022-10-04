@@ -1,8 +1,6 @@
-import { func } from 'prop-types';
 import React, { useState } from 'react';
 import axios from 'axios'
 import {AnimatePresence,motion} from 'framer-motion'
-import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'
 
 function Accomodation() {
@@ -50,7 +48,7 @@ function Accomodation() {
         var f = document.querySelector('#family').value;
         var g = document.querySelector('#grandkids').value;
         }
-        var data = {'participationType' : fam, 'hotelRoom' : rreq, 'checkInDate' : cin, 'checkOutDate' : cout ,'alumni' : a ,'spouse' : s,'familyMembers' : f,'grandKids' : g,'hotel1' : room , 'hotel2' : room2};
+        var data = {'participationType' : fam, 'hotelRoom' : rreq, 'checkInDate' : cin, 'checkOutDate' : cout ,'alumni' : a ,'spouse' : s,'familyMembers' : f,'grandKids' : g,'hotel1' : room , 'hotel2' : room2 ,'totalcost' : costs + costs2};
         axios.post('http://localhost:8080/api/accomodationSave',data).then((res) => console.log(res.data));
         sets(true);
         
@@ -58,7 +56,7 @@ function Accomodation() {
 
 
     function updatecost2(room2){
-        var temp = [2500,2800,1400,3000,3600,1800,3800,4300,2150,5000,5000,2500,6700,6700,3350];
+        var temp = [2000,2000,1000,2500,2500,1250,3700,3700,1850,4500,4500,2250,350,350,350];
         var cost = 0;
         console.log(room2);
         for(var i in room2){
@@ -104,27 +102,27 @@ function Accomodation() {
                         <td><label>Alumni count 
                         
                     </label></td>
-                    <td><input type="number" id='alumni' min = "0" value="0"/></td>
+                    <td><input type="number" min = "0" id='alumni' /></td>
                         </tr>
                         <tr>
                         <td>
                     <label>Spouse count 
                         
                     </label></td>
-                    <td><input type="number" id='spouse' min = "0" value="0"/></td>
+                    <td><input type="number" id='spouse' min = "0" /></td>
                         </tr>
                         <tr>
                         <td>
                     <label>Family members count 
                         
                     </label></td>
-                    <td><input type="number" id='family' min = "0" value="0"/></td>
+                    <td><input type="number" id='family' min = "0" /></td>
                         </tr>
                         <tr>
                         <td>
                         <label>Grand Kids count 
                     </label></td>
-                    <td> <input type="number" id='grandkids' min = "0" value="0"/>
+                    <td> <input type="number" id='grandkids' min = "0" />
 </td>
                         </tr>
                     </tbody>
@@ -179,7 +177,11 @@ function Accomodation() {
                 <option value="hotelTamilNadu">hotelTamilNadu</option>
             </select></>}
             
-            {rreq == 'required' && hotel == "hotelTamilNadu" && <div className='roomdetails'>
+            {rreq == 'required' && <div className='roomdetails'>
+            <br />
+            <br />
+            <h1>hotelTamilNadu</h1>
+            <br />
             <table>
             <thead>
                 <tr>
@@ -197,21 +199,21 @@ function Accomodation() {
                         <tr>
                             <td>Standard</td>
                             <td>2000</td>
-                            <td><input type="number" id='a11'onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a11'onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[0] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }} ></input></td>
-                            <td>2800</td>
-                            <td><input type="number" id='a12' onChange={(e) =>{
+                            <td>2000</td>
+                            <td><input type="number" min = "0" id='a12' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[1] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>1400</td>
-                            <td><input type="number" id='a13' onChange={(e) =>{
+                            <td>1000</td>
+                            <td><input type="number" min = "0" id='a13' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[2] = e.target.value;
                                 setroom2(arr);
@@ -221,22 +223,22 @@ function Accomodation() {
                         </tr>
                         <tr>
                             <td>Deluxe</td>
-                            <td>3000</td>
-                            <td><input type="number" id='a21' onChange={(e) =>{
+                            <td>2500</td>
+                            <td><input type="number" min = "0" id='a21' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[3] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>3600</td>
-                            <td><input type="number" id='a22' onChange={(e) =>{
+                            <td>2500</td>
+                            <td><input type="number" min = "0" id='a22' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[4] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>1800</td>
-                            <td><input type="number" id='a23' onChange={(e) =>{
+                            <td>1250</td>
+                            <td><input type="number" min = "0" id='a23' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[5] = e.target.value;
                                 setroom2(arr);
@@ -246,22 +248,22 @@ function Accomodation() {
                         </tr>
                         <tr>
                             <td>Family Room</td>
-                            <td>3800</td>
-                            <td><input type="number" id='a31' onChange={(e) =>{
+                            <td>3700</td>
+                            <td><input type="number" min = "0" id='a31' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[6] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>4300</td>
-                            <td><input type="number" id='a32' onChange={(e) =>{
+                            <td>3700</td>
+                            <td><input type="number" min = "0" id='a32' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[7] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>2150</td>
-                            <td><input type="number" id='a33' onChange={(e) =>{
+                            <td>1850</td>
+                            <td><input type="number" min = "0" id='a33' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[8] = e.target.value;
                                 setroom2(arr);
@@ -271,22 +273,22 @@ function Accomodation() {
                         </tr>
                         <tr>
                             <td>Suite</td>
-                            <td>5000</td>
-                            <td><input type="number" id='a41' onChange={(e) =>{
+                            <td>4500</td>
+                            <td><input type="number" min = "0" id='a41' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[9] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>5000</td>
-                            <td><input type="number" id='a42' onChange={(e) =>{
+                            <td>4500</td>
+                            <td><input type="number" min = "0" id='a42' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[10] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>2500</td>
-                            <td><input type="number" id='a43' onChange={(e) =>{
+                            <td>2250</td>
+                            <td><input type="number" min = "0" id='a43' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[11] = e.target.value;
                                 setroom2(arr);
@@ -296,22 +298,22 @@ function Accomodation() {
                         </tr>
                         <tr>
                             <td>Additional Member</td>
-                            <td>6700</td>
-                            <td><input type="number" id='a51' onChange={(e) =>{
+                            <td>350</td>
+                            <td><input type="number" min = "0" id='a51' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[12] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>6700</td>
-                            <td><input type="number" id='a52' onChange={(e) =>{
+                            <td>350</td>
+                            <td><input type="number" min = "0" id='a52' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[13] = e.target.value;
                                 setroom2(arr);
                                 updatecost2(arr);
                             }}></input></td>
-                            <td>3350</td>
-                            <td><input type="number" id='a53' onChange={(e) =>{
+                            <td>350</td>
+                            <td><input type="number" min = "0" id='a53' onChange={(e) =>{
                                 var arr = [...room2];
                                 arr[14] = e.target.value;
                                 setroom2(arr);
@@ -324,8 +326,11 @@ function Accomodation() {
                     
 
                 </div>}
-
-            {rreq == 'required' && hotel == "breezeResidency" && <div className='roomdetails'>
+            {rreq == 'required' &&  <div className='roomdetails'>
+            <br />
+            <br />
+            <h1>breezeResidency</h1>
+            <br/>
             <table>
             <thead>
                 <tr>
@@ -343,21 +348,21 @@ function Accomodation() {
                         <tr>
                             <td>Standard</td>
                             <td>2500</td>
-                            <td><input type="number" id='a11'onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a11'onChange={(e) =>{
                                 var arr = [...room];
                                 arr[0] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }} ></input></td>
                             <td>2800</td>
-                            <td><input type="number" id='a12' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a12' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[1] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>1400</td>
-                            <td><input type="number" id='a13' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a13' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[2] = e.target.value;
                                 setroom(arr);
@@ -368,21 +373,21 @@ function Accomodation() {
                         <tr>
                             <td>Executive</td>
                             <td>3000</td>
-                            <td><input type="number" id='a21' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a21' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[3] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>3600</td>
-                            <td><input type="number" id='a22' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a22' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[4] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>1800</td>
-                            <td><input type="number" id='a23' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a23' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[5] = e.target.value;
                                 setroom(arr);
@@ -393,21 +398,21 @@ function Accomodation() {
                         <tr>
                             <td>Deluxe</td>
                             <td>3800</td>
-                            <td><input type="number" id='a31' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a31' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[6] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>4300</td>
-                            <td><input type="number" id='a32' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a32' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[7] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>2150</td>
-                            <td><input type="number" id='a33' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a33' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[8] = e.target.value;
                                 setroom(arr);
@@ -418,21 +423,21 @@ function Accomodation() {
                         <tr>
                             <td>Luxury suite</td>
                             <td>5000</td>
-                            <td><input type="number" id='a41' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a41' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[9] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>5000</td>
-                            <td><input type="number" id='a42' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a42' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[10] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>2500</td>
-                            <td><input type="number" id='a43' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a43' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[11] = e.target.value;
                                 setroom(arr);
@@ -443,21 +448,21 @@ function Accomodation() {
                         <tr>
                             <td>Grand Suite</td>
                             <td>6700</td>
-                            <td><input type="number" id='a51' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a51' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[12] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>6700</td>
-                            <td><input type="number" id='a52' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a52' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[13] = e.target.value;
                                 setroom(arr);
                                 updatecost(arr);
                             }}></input></td>
                             <td>3350</td>
-                            <td><input type="number" id='a53' onChange={(e) =>{
+                            <td><input type="number" min = "0" id='a53' onChange={(e) =>{
                                 var arr = [...room];
                                 arr[14] = e.target.value;
                                 setroom(arr);
