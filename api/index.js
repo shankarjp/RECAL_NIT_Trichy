@@ -111,11 +111,11 @@ router.get('/registered',async(req,res)=>{
         docs.forEach(function(doc){
             list.push({username:doc.username,pax:doc.pax})
             console.log(list);
-            res.send(list);
-        })
+        });
+        res.send(list);
     }
-   })
-   res.send(list);
+   }).clone();
+//    res.send(list);
 }
    catch(e){
     console.log(e.message);

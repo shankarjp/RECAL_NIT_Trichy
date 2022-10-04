@@ -1,0 +1,33 @@
+.navbar-custom {
+    background-color: #0a4bbc;
+}
+.dropdown-menu {
+    background-color: #0a4bbc !important;
+}
+
+.navbar .navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger7.svg?color=FFFFFF');
+}
+
+.navbar-nav a {
+    color: white;
+}
+.navbar-nav a:hover {
+    color: #7CB9E8;
+}
+
+.text-heading {
+    padding: 20px 30px;
+}
+.text-body {
+    padding: 0px 30px 20px;
+}
+
+.carousel-custom {
+    padding: 0 50px 50px;
+}
+
+footer {
+    background-color: #0a4bbc;
+    color: white;
+}

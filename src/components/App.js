@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {
+    BrowserRouter,
     BrowserRouter as Router,
     Route,
     Routes,useLocation
@@ -23,12 +24,14 @@ import ReportTotalcost from './reports/ReportTotalcost';
 import ReportTshirt from './reports/ReportTshirt';
 
 const App = () => {
-    const location = useLocation();
+    // const location = useLocation();
 
     return (
-            <>         
+            <>
+            <Router>       
             <AnimatePresence>
-            <Routes location={location} key = {location.pathname}>
+            {/* <Routes location={location} key = {location.pathname}> */}
+            <Routes>
                 <Route path='' element={<Home />} />
                 <Route path='login' element={<Login />} />
                 <Route path='accomodation' element={<Accomodation />} />
@@ -49,7 +52,7 @@ const App = () => {
                 <Route path='*' element={<NotFound />} />
             </Routes>
             </AnimatePresence>
-
+            </Router>  
         </>
     );
 };
