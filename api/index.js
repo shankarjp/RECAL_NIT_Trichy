@@ -121,11 +121,12 @@ router.get('/registered',async(req,res)=>{
         docs.forEach(function(doc){
             list.push({username:doc.username,pax:doc.pax})
             console.log(list);
-            res.send(list);
+            
         })
+        res.send(list);
     }
-   })
-   res.send(list);
+   }).clone
+   //res.send(list);
 }
    catch(e){
     console.log(e.message);
@@ -134,28 +135,29 @@ router.get('/registered',async(req,res)=>{
 
 router.get('/participation',async(req,res)=>{
     var total1=[0,0,0,0], campvis=[0,0,0,0],evening24=[0,0,0,0],evening25=[0,0,0,0], singl=0,doubl=0,tripl=0,singl2=0,doubl2=0,tripl2=0,hsingl=0,hdoubl=0,htripl=0,hsingl2=0,hdoubl2=0,htripl2=0,totalum,totspo,totgrndchld,accomneed1=[0,0,0,0,0,0,0,0],accomneed2=[0,0,0,0,0,0,0,0],paxx={};
-    console.log("abc")
+    // console.log("abc")
     var accomdata=await Accomodation.find()
-        console.log(accomdata)
+        // console.log(accomdata)
     try{
         console.log("accom01")
         await Accomodation.find(function(err,docs){
             if(err){
-                console.log(err)
-            }else{console.log(docs)
+                // console.log(err)
+            }else{
+                // console.log(docs)
                 docs.forEach((doc)=>{
-                    console.log("Updated -> ")
-                    console.log(doc.checkInDate.getDate().toString())
+                    // console.log("Updated -> ")
+                    // console.log(doc.checkInDate.getDate().toString())
                     //console.log(Date('2022-10-24T00:00:00.000Z').getDate())
                   if(doc.checkInDate.getDate().toString()=='24' &&doc.checkOutDate.getDate().toString()=='25'){
-                  console.log("inin")
+                //   console.log("inin")
                   singl=singl+doc.hotel11[0]+doc.hotel11[3]+doc.hotel11[9]+doc.hotel11[6]+doc.hotel11[12];
                   doubl=doubl+doc.hotel11[1]+doc.hotel11[4]+doc.hotel11[10]+doc.hotel11[7]+doc.hotel11[13];
                   tripl=tripl+doc.hotel11[2]+doc.hotel11[5]+doc.hotel11[11]+doc.hotel11[8]+doc.hotel11[15];
                   hsingl=hsingl+doc.hotel22[0]+doc.hotel22[3]+doc.hotel22[9]+doc.hotel22[6]+doc.hotel22[12];
                   hdoubl=hdoubl+doc.hotel22[1]+doc.hotel22[4]+doc.hotel22[10]+doc.hotel22[7]+doc.hotel22[13];
                   htripl=htripl+doc.hotel22[2]+doc.hotel22[5]+doc.hotel22[11]+doc.hotel22[8]+doc.hotel22[15];}
-                  if(doc.checkInDate.getDate().toString()=='24'&&doc.checkOutDate.getDate().toString()=='25'){
+                  if(doc.checkInDate.getDate().toString()=='24'&&doc.checkOutDate.getDate().toString()=='26'){
                   singl2=singl2+doc.hotel11[0]+doc.hotel11[3]+doc.hotel11[9]+doc.hotel11[6]+doc.hotel11[12];
                   doubl2=doubl2+doc.hotel11[1]+doc.hotel11[4]+doc.hotel11[10]+doc.hotel11[7]+doc.hotel11[13];
                   tripl2=tripl2+doc.hotel11[2]+doc.hotel11[5]+doc.hotel11[11]+doc.hotel11[8]+doc.hotel11[15];
@@ -172,23 +174,25 @@ router.get('/participation',async(req,res)=>{
                 console.log(accomneed1)*/
 
                 })
-                console.log("accom1")
+                // console.log("accom1")
                 accomneed1=[singl,doubl,tripl,(singl+tripl+doubl),hsingl,hdoubl,htripl,(hsingl+htripl+hdoubl)]
-                console.log(accomneed1)
+                // console.log(accomneed1)
                 accomneed2=[singl2,doubl2,tripl2,(singl2+tripl2+doubl2),hsingl2,hdoubl2,htripl2,(hsingl2+htripl2+hdoubl2)]
             }
         }).clone()
         await Tour.find((err,doc2)=>{
             if(err){console.log(err)}
             else{
-                console.log("tourstuf")
+                // console.log("tourstuf")
                 doc2.forEach( (doc2)=>{
                      paxx=doc2.paxCount;
                 })
             }
         }).clone()
         await Event.find( (err,doc3)=>{
-            if(err){console.log(err)}
+            if(err){
+                // console.log(err)
+            }
             else{
                 doc3.forEach( (doc34)=>{
                     console.log("doc34")
@@ -227,7 +231,7 @@ router.get('/participation',async(req,res)=>{
                     breezeRes:accomneed1, TamilnaduHotel:accomneed2, 
                     eventdata:total1,
                     tourdata:paxx};
-                console.log(datasend)
+                // console.log(datasend)
                 res.send(datasend);
             }}).clone()
                     
@@ -469,10 +473,10 @@ router.post('/accomodationSave', async(req,res)=>{
             typeOfRoom:'singleOccupancy',
             username:currentUser,
             pax:{
-                alumini:1,
-                spouse:1,
-                familyMembers:1,
-                grandKids:1
+                alumini:data.alumni,
+                spouse:data.spouse,
+                familyMembers:data.familyMembers,
+                grandKids:data.grandKids
             },
             participationType:data.participationType,
             checkInDate:data.checkInDate,
