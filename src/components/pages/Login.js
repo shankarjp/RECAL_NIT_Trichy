@@ -1,8 +1,11 @@
 import React from 'react';
 import axios from 'axios'
+import { Link, useNavigate} from 'react-router-dom';
 
 function Login() {
+    const navigate = useNavigate();
     function sendPost(){
+        
         console.log("sendPost");
         var username = document.querySelector('#username').value;
         var password = document.querySelector('#password').value;
@@ -10,7 +13,24 @@ function Login() {
             return;
         }
         var data = {'username' :  username, 'password' : password };
-        axios.post('http://localhost:8080/login' , data).then((res) => console.log("test" + res.data));
+        axios.post('http://localhost:8080/login' , data).then(
+            (res)=>{
+                console.log(res);
+                if(res.status == 200){
+                    console.log("nav");
+                    navigate("/");
+                    
+                }
+                else{
+                    console.log("wrong user name");               
+                }
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+
+        );
     }
     return (
         <div className="login-wrapper">
@@ -37,7 +57,7 @@ function Login() {
   
           <div>
   
-            <button onClick={()=>{sendPost();}} type="submit">Submit</button>
+            <Link to=""><button onClick={()=>{sendPost();}} type="submit">Submit</button></Link>
   
           </div>
   
