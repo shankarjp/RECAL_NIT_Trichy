@@ -77,6 +77,7 @@ function Accomodation() {
 
     }
     return (
+        <div className="form-body">
         <motion.div variants={variants1} exit={{x:'-100vw'}} initial ={{x:'-100vw'}} animate="anim" className = "outerc" transition={{duration : 0.3}}>
          
          <motion.div drag dragConstraints={{top:0,bottom:0,left:0,right:0}} className='mtitle'><h1>Accomodation</h1></motion.div>
@@ -483,7 +484,7 @@ function Accomodation() {
                 {saved &&  <p>Successfully Saved</p>}
                 </div>
         </motion.div>
-        
+        </div>
     );
 }
 

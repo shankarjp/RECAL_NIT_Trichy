@@ -70,7 +70,7 @@ function Previews() {
     },[])
 
     return (
-        <>
+        <div className="form-body">
         <div className='mainc'>
         <h1>Previews</h1>
         <table>
@@ -500,7 +500,7 @@ function Previews() {
             <Link to="/tours" ><button className='eventbut'>Tours</button> </Link>
 
             </div>
-        </>
+        </div>
     );
 }
 

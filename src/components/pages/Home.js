@@ -42,14 +42,14 @@ function Home() {
                 </div>
                 </div>
                 <div className="carousel-item">
-                <img className="d-block w-100" src="https://alumni.nitt.edu/wp-content/uploads/2018/07/silver-jublee-reunion-1993-batch.png" alt="Second slide" />
+                <img className="d-block w-100" src="https://alumni.nitt.edu/wp-content/uploads/2018/11/17-768x432.jpeg" alt="Second slide" />
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Second Slide Label</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
                 </div>
                 <div className="carousel-item">
-                <img className="d-block w-100" src="https://alumni.nitt.edu/wp-content/uploads/2018/11/17-768x432.jpeg" alt="Third slide" />
+                <img className="d-block w-100" src="https://alumni.nitt.edu/wp-content/uploads/2019/01/1993-1997-batch-silver-jubilee-friendship-reunion-1.jpg" alt="Third slide" />
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Third Slide Label</h5>
                     <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

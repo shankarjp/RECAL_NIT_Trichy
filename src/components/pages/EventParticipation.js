@@ -44,26 +44,31 @@ function EventParticipation() {
     }
 
     return (
+        <div className="form-body">
         <motion.div initial ={{opacity:0}} variants={variants1} animate="anim" exit={{opacity:0}} className = "outerc" transition={{delay : 0.2 , duration  :0.5}}> 
-        <motion.div drag dragConstraints={{top:0,bottom:0,left:0,right:0}} className='mtitle'><h1>EventParticipation</h1></motion.div>
+        <motion.div drag dragConstraints={{top:0,bottom:0,left:0,right:0}} className='mtitle'><h1>Event Participation</h1></motion.div>
         
         <div className='mainc1'>
             <h2>24th Jan</h2>
+            <br></br>
             <table>
                 <tbody>
                     <tr><td>I will join the evening event at the Hotel</td>
                     <td><input type = "checkbox" min="0" id='a1'></input></td>
                     </tr>
+                    <br></br>
                     <tr>
                         <td>I agree to pay the Lumpsum Participation Fee of Rs.4,500 towards this for Myself & Family
 </td>
 <td><input type = "checkbox" min="0" id='a2'></input></td>
                     </tr>
+                    <br></br>
                     <tr>
                         <td>I agree to pay Rs.750 per Head for Veg-Dinner & Rs.850 per Head for Non-Veg Dinner for the Participants (including Family). I also understand there is no Charge for Grand Children
 </td>
 <td><input type = "checkbox" min="0" id='a3'></input></td>
                     </tr>
+                    <br></br>
                     <tr><td>No. of Participants for Event at Hotel
 </td>   
 <td>Veg</td>
@@ -71,28 +76,26 @@ function EventParticipation() {
                     <td>Non-Veg</td>
                     <td><input type = "number" min="0" id='nv1'></input></td>
                     </tr>
-                    
                 </tbody>
             </table>
         </div><div className='mainc1'>
             <h2>25th Jan</h2>
+            <br></br>
             <table>
                 <tbody>
                     <tr><td>I will join for the Event at the Campus
 </td>
                     <td><input type = "checkbox" min="0" id='a4'></input></td>
                     </tr>
+                    <br></br>
                     <tr>
                         <td>I agree to pay the Lumpsum Participation Fee of Rs.1,600 towards this for Myself & Family. I understand there is no charge for the Lunch at Campus
 
 </td>
 <td><input type = "checkbox" min="0" id='a5'></input></td>
                     </tr>
-                    <tr><td>No. of Participants for Event at Campus
-
-
-
-</td>
+                    <br></br>
+                    <tr><td>No. of Participants for Event at Campus</td>
                     <td><input type = "number" min="0" id='v3'></input></td>
                     </tr>
                     </tbody>
@@ -141,6 +144,7 @@ I agree to pay the Lumpsum Participation Fee of Rs.4,500 towards this for Myself
 
         </div>
         </motion.div>
+        </div>
     );
 }
 

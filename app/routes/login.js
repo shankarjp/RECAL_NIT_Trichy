@@ -83,7 +83,6 @@ login.post("/", (req, res, next) => {
           return res.status(200).json({ success: `logged in ${user.id}` });
       });
   })(req, res, next);
-
 });
 
 export default login;
