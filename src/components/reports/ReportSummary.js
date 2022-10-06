@@ -4,15 +4,12 @@ import {Link} from 'react-router-dom'
 
 function ReportSummary() {
 
-    const [user,setuser]=useState(null)
+    const [user,setuser]=useState([1,2,23,4,5]);
     //const [paxdata, setpaxdata]=useState(null)
     useEffect(()=>{
-         fetch("http://localhost:8080/api/summary")
-    .then((response)=>console.log(response))
-    .then((response) => response.json())
-    .then(response => {
-        setuser(response);
-        //setpaxdata(response.pax);
+         axios("http://localhost:8080/api/summary").then(response => {
+        console.log(response.data);
+        setuser(response.data);
     })
     },[])
 
