@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
-import { response } from 'express';
+
 
 //var campvis = null;
 function ReportParticipation(){
@@ -21,29 +21,28 @@ function ReportParticipation(){
 //     var tourdata=response.data.tourdata;
 
 // })
-let [campvis, setCampvis] = useState(null);
-let [even24hotel, seteven24hotel]=useState(null);
-let [even25hotel, seteven25hotel]=useState(null);
-let [totals,settotals]=useState(null);
-let [breez,setbreez]=useState(null);
-let [breez2,setbreez2]=useState(null);
-let [tourdata,settourdata]=useState(null);
+const [campvis, setCampvis] = useState([0,0,0,0]);
+const [even24hotel, seteven24hotel]=useState([0,0,0,0]);
+const [even25hotel, seteven25hotel]=useState([0,0,0,0]);
+const [totals,settotals]=useState([0,0,0,0]);
+const [breez,setbreez]=useState([0,0,0,0,0,0,0,0]);
+const [breez2,setbreez2]=useState([0,0,0,0,0,0,0]);
+const [tourdata,settourdata]=useState({});
 
 useEffect(() => {
-    fetch("http://localhost:8080/api/participation")
-    .then((response)=>console.log(response))
-    .then((response) => response.json())
+    axios.get("http://localhost:8080/api/participation")
     .then(response => {
+        response=response.data
+        console.log(response);
         setCampvis(response.campusvisit);
         seteven24hotel(response.EveningHotel24th);
-        seteven25hotel=(response.EveningHotel25th);
-        settotals=(response.totalval);
-        setbreez=(response.breezeRes);
-        setbreez2=(response.TamilnaduHotel);
-        settourdata=(response.tourdata);
+        seteven25hotel(response.EveningHotel25th);
+        settotals(response.totalval);
+        setbreez(response.breezeRes);
+        setbreez2(response.TamilnaduHotel);
+        settourdata(response.tourdata);
     })
 }, []);
-console.log(response);
 /* if(campvis==null) {
     return(
         <p>Loading...</p>
@@ -53,7 +52,7 @@ return(
     //<div>
     //    <p>{campvis[0]}</p>
     //</div>
-    <div className='mainc'>
+    <div >
         <h1>Participation Report</h1>
         <table>
              <tbody>
